@@ -27,6 +27,7 @@ class AdminController extends Controller
     public function newsList(){
         $data = [
             'news'  => NewsModel::get(),
+            'category'  => CategoryModel::get(),
         ];
         return view('admin/newsList',$data);
     }
@@ -47,6 +48,9 @@ class AdminController extends Controller
             'category'  => Request()->category,
         ];
         CategoryModel::create($data);
+
+        Request()->session()->flash('success','Category Added!');
+        return redirect('newsList');
     }
 
     public function postNews(){
@@ -136,6 +140,13 @@ class AdminController extends Controller
         NewsModel::where('id',$newsID)->update($data);
 
         Request()->session()->flash('success','Edit Post Success!');
+        return redirect('newsList');
+    }
+
+    public function removeCat($catID){
+        CategoryModel::where('id',$catID)->delete();
+
+        Request()->session()->flash('success','Category removed!');
         return redirect('newsList');
     }
 }

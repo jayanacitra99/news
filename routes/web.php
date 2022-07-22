@@ -33,4 +33,5 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/deletePost/{newsID}',[AdminController::class,'deletePost'])->name('deletePost');
     Route::get('newsList/editPost/{newsID}',[AdminController::class,'editPost'])->name('editPost');
     Route::post('/editThisPost/{newsID}',[AdminController::class,'editThisPost'])->name('editThisPost');
+    Route::get('/removeCat/{catID}',[AdminController::class,'removeCat'])->name('removeCat');
 });

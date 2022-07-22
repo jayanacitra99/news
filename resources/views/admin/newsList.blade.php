@@ -34,6 +34,23 @@
             }
             })
         });
+
+        $(".removeCat").click(function() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                var delurl = $(this).attr('delurl');
+                window.location.replace(delurl);
+            }
+            })
+        });
     });
     </script>
 @endsection
@@ -45,6 +62,17 @@
             <a href="" class="btn btn-default" data-toggle="modal" data-target="#addCat">
                 <h3 class="card-title">Add New Category</h3><i class="fas fa-pen-nib nav-icon pl-3"></i>
             </a>
+            <div class="btn-group">
+              <button type="button" class="btn btn-danger">Remove Category</button>
+              <button type="button" class="btn btn-danger dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div class="dropdown-menu" role="menu">
+                @foreach ($category as $item)
+                  <a class="dropdown-item removeCat" href="#" delurl="{{url('removeCat/'.$item->id)}}">{{$item->category}}</a>    
+                @endforeach
+              </div>
+            </div>
         </div>
         <div class="modal fade" id="addCat">
             <div class="modal-dialog modal-sm">

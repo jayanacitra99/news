@@ -33,6 +33,10 @@
     a:hover {
         text-decoration: none;
     }
+    img {
+      height: 100%;
+      width: 100%
+    }
   </style>
   </head>
 
@@ -86,19 +90,20 @@
 
         <div class="content-wrapper">
           <div class="container">
-            <div class="row" data-aos="fade-up">
-                <div class="col-xl-10 stretch-card grid-margin">
+            <div class="row d-flex justify-content-center" data-aos="fade-up">
+                <div class="col-xl-10 stretch-card grid-margin ">
                     <div class="card">
                         <div class="card-header">
-                            <div class="position-relative">
-                                <div class="d-flex justify-content-center" style="background-color: rgba(0,0,0,0.3)">
+                            <div class="">
+                                <div class="d-flex justify-content-center" style="max-height: 100vh; background-color: rgba(0, 0, 0, 0.5)">
                                     <img
                                     src="{{asset($read->image)}}"
                                     alt="banner"
                                     class="img-fluid"
+                                    style="object-fit: contain"
                                   />
                                 </div>
-                                <div class="banner-content">
+                                <div class="" style="">
                                   @foreach (unserialize($read->category) as $item)
                                     <div class="badge badge-info fs-12 font-weight-bold mb-3">
                                       {{$item}}
@@ -150,11 +155,12 @@
                         <div class="row">
                             <div class="col-sm-4 grid-margin">
                               <div class="position-relative">
-                                <div class="rotate-img">
+                                <div class="p-0 rotate-img" style="height: 20vh">
                                   <img
                                     src="{{asset($item->image)}}"
                                     alt="thumb"
-                                    class="img-fluid"
+                                    class="" 
+                                    style="object-fit: cover;"
                                   />
                                 </div>
                                 <div class="badge-positioned">

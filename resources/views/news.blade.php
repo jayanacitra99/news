@@ -33,6 +33,17 @@
     a:hover {
         text-decoration: none;
     }
+    .parent-img {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      max-height: 20vh;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      min-height: 100%
+    }
   </style>
   </head>
 
@@ -47,10 +58,10 @@
               </div>
               <div class="navbar-bottom">
                 <div class="d-flex justify-content-between align-items-center">
-                  <div>
+                  <div class="" >
                     <a class="navbar-brand" href="{{url('/')}}"
-                      ><img src="{{asset('')}}world-time/assets/images/logo.svg" alt=""
-                    /></a>
+                      ><img src="{{asset('')}}world-time/assets/images/logo.svg" alt=""/>
+                    </a>
                   </div>
                   <div>
                     <button
@@ -105,12 +116,15 @@
           <div class="container">
             <div class="row" data-aos="fade-up">
               <div class="col-xl-8 stretch-card grid-margin">
-                <div class="position-relative">
-                  <img
-                    src="{{asset($recent->image)}}"
-                    alt="banner"
-                    class="img-fluid"
-                  />
+                <div class="" style="width: 100%; background-color: rgba(0, 0, 0, 0.5); max-height: 70vh">
+                  <div class="p-0 rotate-img " style="height: 100%" >
+                    <img
+                      src="{{asset($recent->image)}}"
+                      alt="thumb"
+                      class="position-relative" 
+                      style="object-fit: cover; z-index : -1;"
+                    />
+                  </div>
                   <div class="banner-content">
                     @foreach (unserialize($recent->category) as $item)
                       <div class="badge badge-info fs-12 font-weight-bold mb-3">
@@ -130,11 +144,11 @@
               </div>
               <div class="col-xl-4 stretch-card grid-margin">
                 <div class="card bg-dark text-white">
-                  <div class="card-body">
+                  <div class="card-body" style="max-height: 70vh">
                     <h2>Latest news</h2>
                     @foreach ($latest as $item)
-                    <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
-                      <div class="pr-3">
+                    <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between row">
+                      <div class="pr-3 col-8">
                         <a href="{{url('read/'.$item->id)}}">
                           <h5>{{$item->title}}</h5>
                         </a>
@@ -142,11 +156,12 @@
                           <span class="mr-2">{{date('D, d-M-Y', strtotime($item->created_at))}} </span>{{date('h:i', strtotime($item->created_at))}}
                         </div>
                       </div>
-                      <div class="rotate-img">
+                      <div class="col-4 p-0 rotate-img" style="height: 10vh">
                         <img
                           src="{{asset($item->image)}}"
                           alt="thumb"
-                          class="img-fluid img-lg"
+                          class="" 
+                          style="object-fit: cover;"
                         />
                       </div>
                     </div>
@@ -176,11 +191,12 @@
                       <div class="row">
                         <div class="col-sm-4 grid-margin">
                           <div class="position-relative">
-                            <div class="rotate-img">
+                            <div class="p-0 rotate-img" style="height: 20vh">
                               <img
                                 src="{{asset($item->image)}}"
                                 alt="thumb"
-                                class="img-fluid"
+                                class="" 
+                                style="object-fit: cover;"
                               />
                             </div>
                             <div class="badge-positioned">
@@ -209,7 +225,7 @@
             <?php $row = 0?>
             @foreach ($allCat as $item)
                 @if ($row == 0)
-                <div class="row mt-5" data-aos="fade-up">
+                <div class="row" data-aos="fade-up">
                   <div class="col-sm-12 grid-margin">
                     <div class="card">
                       <div class="card-body">
@@ -234,16 +250,15 @@
                       @if (($found) && ($count < 5))
                           <?php $count++?>
                           <div class="d-flex justify-center align-items-center border-bottom pb-2">
-                            <div class="div-w-80 mr-3">
-                              <div class="rotate-img">
-                                <img
-                                  src="{{asset($con->image)}}"
-                                  alt="thumb"
-                                  class="img-fluid"
-                                />
-                              </div>
+                            <div class="col-5 p-0 rotate-img " style="height: 20vh">
+                              <img
+                                src="{{asset($con->image)}}"
+                                alt="thumb"
+                                class="" 
+                                style="object-fit: cover; object-position: right"
+                              />
                             </div>
-                            <div class="">
+                            <div class="ml-2">
                               <a href="{{url('read/'.$con->id)}}">
                                 <p class="fs-16 font-weight-600 mb-0">
                                   {{$con->title}}
@@ -288,7 +303,7 @@
           <div class="footer-top">
             <div class="container">
               <div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-5 parent-img">
                   <img src="{{asset('')}}world-time/assets/images/logo.svg" class="footer-logo" alt="" />
                   <h5 class="font-weight-normal mt-4 mb-5">
                     Newspaper is your news, entertainment, music fashion website. We
@@ -303,11 +318,12 @@
                     <div class="col-sm-12">
                       <div class="footer-border-bottom pb-2">
                         <div class="row">
-                          <div class="col-3">
+                          <div class="col-3 p-0 rotate-img d-flex justify-content-center" style="height: 10vh">
                             <img
                               src="{{asset($item->image)}}"
                               alt="thumb"
-                              class="img-fluid"
+                              class="" 
+                              style="object-fit: cover;"
                             />
                           </div>
                           <div class="col-9">
